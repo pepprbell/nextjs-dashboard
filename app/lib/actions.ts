@@ -1,6 +1,8 @@
 'use server'; // 이 코드로 여기서 export된 함수들은 server action으로 간주됨
 
+import { signIn } from "@/auth";
 import { sql } from "@vercel/postgres";
+import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod"; // type validation library
@@ -118,3 +120,22 @@ export type State = {
   };
   message?: string | null;
 };
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData,
+) {
+  try {
+    await signIn('credentials', formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        default:
+          return 'Something went wrong.';
+      }
+    }
+    throw error;
+  }
+}
