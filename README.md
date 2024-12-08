@@ -1,5 +1,6 @@
-## Next.js App Router Course - Starter
+## Next.js App Router Course
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
+Next.js [튜토리얼 커리큘럼](https://nextjs.org/learn)을 따라 만든 대시보드.
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+라이브 데모 ↓
+https://nextjs-dashboard-three-blue-79.vercel.app/dashboard
